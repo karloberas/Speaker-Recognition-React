@@ -1,12 +1,13 @@
 var profilesModel = require('../models/profiles.model.js');
 var Axios = require('axios');
 var fs = require('fs');
-requre('dotenv');
+require('dotenv').config();
 
 const key = process.env.KEY;
 
 exports.AddProfile = function(data) {
-    return new Promise(function(resolve, reject) {    
+    return new Promise(function(resolve, reject) {   
+        console.log(key); 
         Axios.post(
             'https://westus.api.cognitive.microsoft.com/spid/v1.0/identificationProfiles',
             {

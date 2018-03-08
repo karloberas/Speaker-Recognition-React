@@ -9,3 +9,7 @@
 4. Navigate into the client folder and execute `npm i`
 5. Run MongoDB by opening another terminal and execute `mongod`
 6. Execute `npm start` in the root directory
+
+## References
+[github-rel]: https://github.com/mattdiamond/Recorderjs
+[github-rel]: https://github.com/rposbo/speaker-recognition-api
