@@ -11,5 +11,5 @@
 6. Execute `npm start` in the root directory
 
 ## References
-[github-rel]: https://github.com/mattdiamond/Recorderjs
-[github-rel]: https://github.com/rposbo/speaker-recognition-api
+[Recorderjs] (https://github.com/mattdiamond/Recorderjs)
+[Speaker Recognition API] (https://github.com/rposbo/speaker-recognition-api)
