@@ -1,0 +1,271 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 2em;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.menu-button {
+  margin-top: 20px;
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.5em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+
+.button:hover {
+  background:#fff;
+  color:#1AAB8A;
+}
+
+.button-active {
+  background:#fff;
+  color:#1AAB8A;
+}
+
+.button-active:before {
+  width:100% !important;
+}
+
+.button-active:after {
+  width:100%;
+}
+
+
+.button:before,button:after {
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+
+.button:after {
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+
+.button:hover:before,button:hover:after {
+  width:100%;
+  transition:800ms ease all;
+}
+
+.page-content {
+  margin: 20px 100px;
+  border: 2px solid #1AAB8A;
+  border-radius: 20px;
+}
+
+.form-text {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font: 95% Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+.form-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:30px;
+  font-size:1.2em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+
+.form-button-warning {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background:#ffbb33;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:40px;
+  font-size:1.2em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  margin-right: 10px;
+}
+
+.form-button-delete {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background:#ff4444;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:40px;
+  font-size:1.2em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+
+.form-button:hover {
+  background:rgb(29, 119, 97);
+}
+
+.enrollment-content {
+  display:flex;
+  justify-content: space-around;
+  text-align:left;
+}
+
+.text-to-read {
+  line-height:20px;
+}
+
+.player {
+  margin-top: 20px;
+}
+
+.link {
+  margin-top: 20px;
+}
+
+.enrollment-status ul {
+  list-style: none;
+  padding: 0;
+}
+
+.identification-result {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.identification-result ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+@keyframes click-wave {
+  0% {
+    height: 40px;
+    width: 40px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 200px;
+    width: 200px;
+    margin-left: -80px;
+    margin-top: -80px;
+    opacity: 0;
+  }
+}
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 13.33333px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  width: 40px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+}
+.option-input:hover {
+  background: #9faab7;
+}
+.option-input:checked {
+  background: #40e0d0;
+}
+.option-input:checked::before {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  content: '✔';
+  display: inline-block;
+  font-size: 26.66667px;
+  text-align: center;
+  line-height: 40px;
+}
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #40e0d0;
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+
+.radio-label {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.radio-label i {
+  color: red;
+}
+
+
