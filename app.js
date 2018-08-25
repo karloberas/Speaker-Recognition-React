@@ -33,10 +33,13 @@ app.use(bodyParser.json());
 // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(`${__dirname}/client/build`));
 app.use(cors());
 
 app.use('/', index);
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, 'client/build/index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

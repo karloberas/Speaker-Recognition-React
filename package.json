@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "start nodemon bin/www && cd client && npm start"
+    "start": "node bin/www"
   },
   "dependencies": {
     "axios": "^0.18.0",
