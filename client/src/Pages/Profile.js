@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 
+const url = "";
+
 class Profile extends Component {
     constructor(props) {
       super(props);
@@ -14,7 +16,7 @@ class Profile extends Component {
     }
   
     handleSubmit = (event) => {
-      Axios.post('http://localhost:3001/profile', {
+      Axios.post(`${url}/profile`, {
         name:this.state.value
       }).then(
         (response) => {

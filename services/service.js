@@ -1,15 +1,17 @@
 var profilesModel = require('../models/profiles.model.js');
 var Axios = require('axios');
 var fs = require('fs');
+const CircularJSON = require('circular-json');
 require('dotenv').config();
 
 const key = process.env.KEY;
+const url = 'https://geek-speaker-recognition.cognitiveservices.azure.com/spid/v1.0';
 
 exports.AddProfile = function(data) {
     return new Promise(function(resolve, reject) {   
         console.log(key); 
         Axios.post(
-            'https://westus.api.cognitive.microsoft.com/spid/v1.0/identificationProfiles',
+            `${url}/identificationProfiles`,
             {
                 "locale":"en-us"
             },
@@ -36,7 +38,7 @@ exports.AddProfile = function(data) {
 exports.ResetEnrollment = function(data) {
     return new Promise(function(resolve, reject) { 
         Axios.post(
-            'https://westus.api.cognitive.microsoft.com/spid/v1.0/identificationProfiles/'+data.id+'/reset',
+            `${url}/identificationProfiles/'+data.id+'/reset`,
             {},
             {
                 headers: {
@@ -59,10 +61,10 @@ exports.DeleteProfile = function(_identificationProfileId) {
     console.log(_identificationProfileId);
     return new Promise(function(resolve, reject) { 
         Axios.delete(
-            'https://westus.api.cognitive.microsoft.com/spid/v1.0/identificationProfiles/'+_identificationProfileId,
+            `${url}/identificationProfiles/${_identificationProfileId}`,
             {
                 headers: {
-                    'Ocp-Apim-Subscription-Key':key
+                    'Ocp-Apim-Subscription-Key': key
                 }
             }
         ).then(function() {
@@ -90,7 +92,7 @@ exports.GetProfiles = function() {
 exports.EnrollProfile = function(_identificationProfileId, _blob) {
     return new Promise(function(resolve, reject) {
         Axios.post(
-            'https://westus.api.cognitive.microsoft.com/spid/v1.0/identificationProfiles/'+_identificationProfileId+'/enroll?shortAudio=true',
+            `${url}/identificationProfiles/${_identificationProfileId}/enroll?shortAudio=true`,
             fs.createReadStream(_blob.path),
             {
                 headers: {
@@ -137,7 +139,8 @@ exports.CheckStatus = function(data) {
                 resolve(response.data);
             }
         }, function(err) {
-            reject(err);
+            let json = CircularJSON.stringify(err);
+            reject(json);
         });
     });
 }
@@ -151,7 +154,7 @@ exports.IdentifyProfile = function(_blob) {
             });
             var ids = profileIds.join(",");
             Axios.post(
-                'https://westus.api.cognitive.microsoft.com/spid/v1.0/identify?identificationProfileIds='+ids+'&shortAudio=true',
+                `${url}/identify?identificationProfileIds=${ids}&shortAudio=true`,
                 fs.createReadStream(_blob.path),
                 {
                     headers: {
@@ -162,7 +165,9 @@ exports.IdentifyProfile = function(_blob) {
             ).then(function(response) {
                 resolve(response.headers["operation-location"]);
             }, function(err) {
-                reject(err);
+                let json = CircularJSON.stringify(err);
+                console.log(json.message);
+                reject(json);
             });
         }, function(err) {
             reject(err);

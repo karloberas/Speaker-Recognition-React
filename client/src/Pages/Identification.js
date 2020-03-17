@@ -3,6 +3,8 @@ import Axios from 'axios';
 
 import AudioRecorder from '../Components/AudioRecorder.js';
 
+const url = "";
+
 class Identification extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +21,7 @@ class Identification extends Component {
     var bodyFormData = new FormData();
     bodyFormData.set('blob', blob);
     Axios.post(
-      'http://localhost:3001/identification',
+      `${url}/identification`,
       bodyFormData,
       {
           headers: {
@@ -40,7 +42,7 @@ class Identification extends Component {
 
   handleCheck = () => {
     if(this.state.location !== "") {
-      Axios.post('http://localhost:3001/status', {
+      Axios.post(`${url}/status`, {
         url:this.state.location
       }).then(
         (response) => {

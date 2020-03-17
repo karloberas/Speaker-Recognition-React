@@ -5,6 +5,8 @@ import SampleText from '../Components/SampleText.js';
 import RadioButtons from '../Components/RadioButtons.js';
 import AudioRecorder from '../Components/AudioRecorder.js';
 
+const url = "";
+
 class Enrollment extends Component {
     constructor(props) {
       super(props);
@@ -23,7 +25,7 @@ class Enrollment extends Component {
     }
 
     retrieveProfiles = () => {
-      Axios.get('http://localhost:3001/profile').then(
+      Axios.get(`${url}/profile`).then(
         (response) => {
           this.setState({profileList:response.data});
         },
@@ -41,7 +43,7 @@ class Enrollment extends Component {
       var bodyFormData = new FormData();
       bodyFormData.set('blob', blob);
       Axios.post(
-        'http://localhost:3001/enrollment/'+this.state.identificationProfileId,
+        `${url}/enrollment/${this.state.identificationProfileId}`,
         bodyFormData,
         {
             headers: {
@@ -62,7 +64,7 @@ class Enrollment extends Component {
 
     handleCheck = () => {
       if(this.state.location !== "") {
-        Axios.post('http://localhost:3001/status', {
+        Axios.post(`${url}/status`, {
           url:this.state.location
         }).then(
           (response) => {
@@ -84,7 +86,7 @@ class Enrollment extends Component {
     }
 
     handleReset = () => {
-      Axios.put('http://localhost:3001/profile',
+      Axios.put(`${url}/profile`,
         {id:this.state.identificationProfileId}
       ).then(
         (response) => {
@@ -97,7 +99,7 @@ class Enrollment extends Component {
     }
 
     handleDelete = () => {
-      Axios.delete('http://localhost:3001/profile',
+      Axios.delete(`${url}/profile`,
         {params:{id:this.state.identificationProfileId}}
       ).then(
         (response) => {
