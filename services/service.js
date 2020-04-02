@@ -8,8 +8,7 @@ const key = process.env.KEY;
 const url = 'https://geek-speaker-recognition.cognitiveservices.azure.com/spid/v1.0';
 
 exports.AddProfile = function(data) {
-    return new Promise(function(resolve, reject) {   
-        console.log(key); 
+    return new Promise(function(resolve, reject) {
         Axios.post(
             `${url}/identificationProfiles`,
             {
@@ -149,9 +148,9 @@ exports.IdentifyProfile = function(_blob) {
     return new Promise(function(resolve, reject) {
         profilesModel.find({}, 'identificationProfileId').then(function(result) {
             var profileIds = [];
-            result.forEach(function(profile) {
-                profileIds.push(profile.identificationProfileId);
-            });
+            for (let i = 0; i < result.length && i < 50; i ++) {
+                profileIds.push(result[i].identificationProfileId);
+            }
             var ids = profileIds.join(",");
             Axios.post(
                 `${url}/identify?identificationProfileIds=${ids}&shortAudio=true`,
